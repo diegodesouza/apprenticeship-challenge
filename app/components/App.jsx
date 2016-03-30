@@ -1,5 +1,5 @@
 import React from 'react'
-import Note from './Note.jsx'
+import Items from './Items.jsx'
 import uuid from 'node-uuid'
 
 export default class App extends React.Component {
@@ -24,10 +24,11 @@ export default class App extends React.Component {
     return (
       <div>
         <button onClick={this.addItem}>+</button>
-        <ul>
-          {items.map(item => 
-           <li key={item.id}>{item.text}</li>
-          )} </ul>
+        <Items 
+          items={items}
+          onEdit={this.editItem}
+          onDelete={this.deleteItem}
+        />
       </div>
     )
   }
@@ -42,6 +43,30 @@ export default class App extends React.Component {
           }
         ]
       )
+    })
+  }
+
+  editItem = (id, text) => {
+    if(!text.trim()) {
+      return;
+    }    
+
+    const items = this.state.items.map(item => {
+      if(item.id === id && text) {
+        item.text = text
+      }
+
+      return item
+    })
+
+    this.setState({items})
+  }
+
+  deleteItem = (id, e) => {
+    e.stopPropagation();
+
+    this.setState({
+      items: this.state.items.filter(item => item.id !== id)
     })
   }
 }
