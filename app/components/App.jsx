@@ -1,42 +1,25 @@
 import React from 'react'
-import Items from './Items'
-import ItemActions from '../actions/ItemActions'
-import ItemStore from '../stores/ItemStore'
+import Lists from './Lists'
+import ListActions from '../actions/ListActions'
+import ListStore from '../stores/ListStore'
 import AltContainer from 'alt-container'
 
 export default class App extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.addItem}>+</button>
+        <button onClick={this.addList}>+</button>
         <AltContainer
           stores={[ItemStore]}
-          inject={{items: () => ItemStore.getState().items}}
+          inject={{lists: () => ListStore.getState().lists || []}}
         >
-          <Items 
-            onEdit={this.editItem}
-            onDelete={this.deleteItem}
-          />
+          <Items />
         </AltContainer>
       </div>
     )
   }
 
-  addItem = () => {
-    ItemActions.create({text: "New Shopping Item"})
-  }
-
-  editItem = (id, text) => {
-    if(!text.trim()) {
-      return;
-    }    
-
-    ItemActions.update({id, text})
-  }
-
-  deleteItem = (id, e) => {
-    e.stopPropagation();
-
-    ItemActions.delete(id)
+  addList = () => {
+    ListActions.create({title: "New Shopping List"})
   }
 }
