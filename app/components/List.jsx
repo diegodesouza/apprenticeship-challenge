@@ -1,5 +1,5 @@
-import AltContainer from 'alt-container'
 import React from 'react'
+import AltContainer from 'alt-container'
 import Items from './Items.jsx'
 import ItemActions from '../actions/ItemActions'
 import ItemStore from '../stores/ItemStore'
@@ -8,33 +8,38 @@ import Editor from '../components/Editor'
 
 export default class List extends React.Component {
   render() {
+    // extracts list as this.props
     const {list, ...props} = this.props;
 
     return (
       <div {...props}>
         <div className="" onClick={this.activateListEdit}>
+
           <div className="">
             <button onClick={this.addItem}>+</button>
           </div>
+
           <Editor className=""
             editing={list.editing}
             value={list.title}
             onEdit={this.editTitle}
           />
+
           <div className="">
             <button onClick={this.deleteList}>x</button>
           </div>
-          <AltContainer
-            stores={[ItemStore]}
-            inject={{ items: () => ItemStore.getItemsByIds(list.items) }}
-          >
-            <Items 
-              onValueClick={this.activateItemEdit}
-              onEdit={this.editItem} 
-              onDelete={this.deleteItem}
-            />
-          </AltContainer>
+
         </div>
+        <AltContainer
+          stores={[ItemStore]}
+          inject={{ items: () => ItemStore.getItemsByIds(list.items) }}
+        >
+          <Items 
+            onValueClick={this.activateItemEdit}
+            onEdit={this.editItem} 
+            onDelete={this.deleteItem}
+          />
+        </AltContainer>
       </div>
     )
   }
@@ -66,7 +71,7 @@ export default class List extends React.Component {
     if(!text.trim()) {
       ItemActions.update({id, editing: false})
 
-      return;
+      return
     }
 
     ItemActions.update({id, text, editing: false});
@@ -75,11 +80,11 @@ export default class List extends React.Component {
   activateListEdit = () => {
     const listId = this.props.list.id
 
-    ListActions.udpate({id: listId, editing: true})
+    ListActions.update({id: listId, editing: true})
   }
 
   activateItemEdit(id) {
-    ItemActions.update({id: id, editing: true})
+    ItemActions.update({id, editing: true})
   }
 
 

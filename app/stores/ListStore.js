@@ -23,7 +23,7 @@ class ListStore {
   update(updatedList) {
     const lists = this.lists.map(list => {
       if(list.id === updatedList.id) {
-        return Object.assign({}, lane, updatedList)
+        return Object.assign({}, list, updatedList)
       }
 
      return list
