@@ -10,10 +10,10 @@ export default class App extends React.Component {
       <div>
         <button onClick={this.addList}>+</button>
         <AltContainer
-          stores={[ItemStore]}
+          stores={[ListStore]}
           inject={{lists: () => ListStore.getState().lists || []}}
         >
-          <Items />
+          <Lists />
         </AltContainer>
       </div>
     )

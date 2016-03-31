@@ -1,9 +1,10 @@
 import React from 'react'
+import List from './list'
 
-export default class Lists extends React.Component {
-  render() {
-    return (
-      <div>Lists</div>
-    )
-  }
+export default ({lists}) => { 
+  return (
+    <div>{lists.map(list =>
+      <List key={list.id} list={list}/>
+    )}</div>
+  )
 }

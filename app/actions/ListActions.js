@@ -1,3 +1,9 @@
 import alt from '../libs/alt'
 
-export default alt.generateActions('create', 'update', 'delete')
+export default alt.generateActions('create',
+                                   'update',
+                                   'delete',
+                                   'connectToList',
+                                   'disconnectFromList'
+                                  )
+
