@@ -15,7 +15,7 @@ export default class List extends React.Component {
       <div {...props}>
         <div className="" onClick={this.activateListEdit}>
 
-          <div className="">
+          <div className="add-item">
             <button onClick={this.addItem}>+</button>
           </div>
 

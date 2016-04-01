@@ -7,7 +7,9 @@
     "build": "webpack",
     "start": "webpack-dev-server",
     "deploy": "gh-pages -d build",
-    "test": "mocha --require test/helpers/setup.js"
+    "test": "mocha --compilers js:babel-register --require test/helpers/setup.js --recursive ",
+    "test:watch": "npm test -- --watch"
+
   },
   "keywords": [
     "webpack",
@@ -41,6 +43,7 @@
     "redux": "^3.3.1",
     "redux-devtools": "^3.1.1",
     "sass-loader": "^3.2.0",
+    "sinon": "^1.17.3",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.14",
     "webpack-dev-server": "^1.14.1",

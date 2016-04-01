@@ -8,7 +8,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.addList}>+</button>
+        <button className="add-list" onClick={this.addList}>+</button>
         <AltContainer
           stores={[ListStore]}
           inject={{lists: () => ListStore.getState().lists || []}}
